@@ -1,0 +1,83 @@
+<resources>
+    <string name="app_name">خدني معك</string>
+    <string name="google_maps_key">AIzaSyB6dy8Hjl20l8hH6qrzbrJ3JOIIHtHUWfA</string>
+    <string name="google_geo_key">AIzaSyBT2Kk5oh2O18Lw1dv9ZNtrCIxFlt1QQBM</string>
+    <string name="titel">الورود</string>
+    <string name="go_live">Go Live</string>
+    <string name="main_search">إلى أين تحب أن تذهب</string>
+    <string name="home">الرئيسية</string>
+
+    <string-array name="drawerItems">
+        <item>الرئيسية</item>
+        <item>الإشعارات</item>
+        <item>رحلاتي</item>
+        <item>خدماتي</item>
+        <item>الإعدادات</item>
+        <item>المساعدة</item>
+    </string-array>
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_notifications</item>
+        <item>@drawable/ic_car__menu</item>
+        <item>@drawable/ic_car_menu_2</item>
+        <item>@drawable/ic_settings</item>
+        <item>@drawable/ic_help</item>
+    </array>
+    <array name="nav_drawer_icons_on">
+        <item>@drawable/ic_home_black</item>
+        <item>@drawable/ic_notifications_black_24px</item>
+        <item>@drawable/ic_car__menu_black</item>
+        <item>@drawable/ic_car_menu_2_black</item>
+        <item>@drawable/ic_settings_black</item>
+        <item>@drawable/ic_help_black</item>
+    </array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="driver">سائق</string>
+    <string name="user">راكب</string>
+    <string name="cancel">إلغاء</string>
+    <string name="ok">موافق</string>
+    <string name="bu_requet">اطلب</string>
+    <string name="fragment_data_travel">بيانات الرحلة</string>
+    <string name="fragment_device_data">بيانات المركبة</string>
+    <string name="travel">الرحلة</string>
+    <string name="type">نوع المركبة</string>
+    <string name="model">موديل المركبة</string>
+    <string name="number">رقم المركبة</string>
+    <string name="color">لون المركبة</string>
+    <string name="tv_number">أشخاص</string>
+    <string name="allTv_number">لكل شخص</string>
+    <string name="tvtravel">الرحلات</string>
+    <string name="search">البحث</string>
+    <string name="select_location">حدد مكانك</string>
+    <string name="want_go">أين ستذهب</string>
+    <string name="date">التاريخ</string>
+    <string name="toggel">قم بإيقاف أو تشغيل الرحلة</string>
+    <string name="tvOrder">خدماتي</string>
+    <string name="da_img">تحميل صور السيارة</string>
+    <string name="enter_data_device">ادخال بيانات المركبة</string>
+    <string name="data_device">بيانات المركبة</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="time">الوقت</string>
+    <string name="from">من</string>
+    <string name="to">إلى</string>
+    <string name="num_user">عدد الأشخاص</string>
+    <string name="salary">السعر</string>
+    <string name="description">التفاصيل</string>
+    <string name="addTrip">إضافة رحلة</string>
+    <string name="male">ذكر</string>
+    <string name="female">أنثى</string>
+    <string name="both">كلاهما</string>
+    <string name="smoke">التدخين</string>
+    <string name="music">المسجل</string>
+    <string name="condition">التكييف</string>
+    <string name="personal">الملف الشخصي</string>
+    <string name="num_trip">عدد الرحلات</string>
+    <string name="num_ordar">عدد الخدمات</string>
+    <string name="dta_connect">بيانات التواصل</string>
+    <string name="per_dta">بيانات شخصية</string>
+    <string name="age">العمر</string>
+    <string name="on_time">مرة واحدة</string>
+    <string name="many_time">التكرار  أسبوعيا</string>
+</resources>

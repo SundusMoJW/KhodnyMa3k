@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textSize">16dp</dimen>
+    <dimen name="titel">18dp</dimen>
+    <dimen name="nav_size">400dp</dimen>
+    <dimen name="hedar">500dp</dimen>
+    <dimen name="padding_icon">0dp</dimen>
+    <dimen name="hight_slider">450dp</dimen>
+    <dimen name="rest_icon">25dp</dimen>
+    <dimen name="rest_ic_padding">8dp</dimen>
+    <dimen name="res_ic_size">45dp</dimen>
+    <dimen name="pading_plus_cart">5dp</dimen>
+    <dimen name="map">250dp</dimen>
+    <dimen name="hight_signup">300dp</dimen>
+
+</resources>

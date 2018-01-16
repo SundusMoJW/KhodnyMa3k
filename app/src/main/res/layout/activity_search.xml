@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="rtl"
+    android:textDirection="rtl"
+    android:scrollbars="none"
+    tools:context="com.twins.sundus.osama.khodnyma3k.Activity.SearchActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentTop="true"
+        android:alpha="255"
+        android:background="#00ffffff"
+        android:contentInsetEnd="0dp"
+        android:contentInsetLeft="0dp"
+        android:contentInsetRight="0dp"
+        android:contentInsetStart="0dp"
+        app:contentInsetEnd="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetStart="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize">
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse"
+                android:layout_width="wrap_content"
+                android:layout_height="?actionBarSize"
+                android:layout_gravity="center"
+                android:alpha="255"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="15dp"
+                android:text="@string/search"
+                android:textColor="@color/black" />
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="?actionBarSize"
+                android:layout_height="?actionBarSize"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:alpha="255"
+                android:padding="15dp"
+                app:srcCompat="@drawable/ic_arrow_back_black_24px" />
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
+
+        <ImageView
+            android:id="@+id/red_ellipse"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp"
+            app:srcCompat="@drawable/ic_red_ellipse" />
+
+        <View
+            android:id="@+id/verticalView"
+            android:layout_width="0.5dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/red_ellipse"
+            android:layout_marginBottom="2dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/colorAccent" />
+
+        <ImageView
+            android:id="@+id/green_ellipse"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_below="@id/verticalView"
+            android:layout_marginRight="10dp"
+            app:srcCompat="@drawable/ic_green_ellipse" />
+
+        <TextView
+            android:id="@+id/select_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:inputType="text"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@id/red_ellipse"
+            android:background="@drawable/back_edit_text"
+            android:hint="@string/select_location"
+            android:padding="10dp"
+            android:textSize="@dimen/textSize" />
+
+        <TextView
+            android:id="@+id/want_go"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/select_location"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:inputType="text"
+            android:layout_toEndOf="@id/red_ellipse"
+            android:background="@drawable/back_edit_text"
+            android:hint="@string/want_go"
+            android:padding="10dp"
+            android:textSize="@dimen/textSize" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/want_go"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:inputType="date"
+            android:layout_marginRight="10dp"
+            android:layout_toEndOf="@id/red_ellipse"
+            android:background="@drawable/back_edit_text"
+            android:hint="@string/date"
+            android:padding="10dp"
+            android:textSize="@dimen/textSize" />
+
+        <LinearLayout
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/date"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/back_edit_text"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                app:srcCompat="@drawable/ic_filter_list_black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:hint="@string/search"
+                android:inputType="text"
+                android:padding="5dp"
+                android:textSize="@dimen/textSize" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

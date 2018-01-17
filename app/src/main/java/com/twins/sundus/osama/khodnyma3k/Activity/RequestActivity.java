@@ -1,7 +1,6 @@
 package com.twins.sundus.osama.khodnyma3k.Activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -24,9 +23,9 @@ public class RequestActivity extends AppCompatActivity {
         request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RequestActivity.this, TravelActivity.class);
-                startActivity(intent);
-                finish();
+//                Intent intent = new Intent(RequestActivity.this, TravelActivity.class);
+//                startActivity(intent);
+//                finish();
             }
         });
     }

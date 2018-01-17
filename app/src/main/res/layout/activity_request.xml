@@ -58,7 +58,7 @@
     <View
         android:id="@+id/verticalView"
         android:layout_width="0.5dp"
-        android:layout_height="70dp"
+        android:layout_height="40dp"
         android:layout_below="@id/red_ellipse"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="5dp"
@@ -102,7 +102,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/fromAddress"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="30dp"
         android:layout_toEndOf="@id/green_ellipse"
         android:text="إلى الرياض"
         android:textColor="@color/black"

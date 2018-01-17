@@ -37,9 +37,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_geo_key" />
 
-        <!--<meta-data-->
-            <!--android:name="com.google.android.geo.API_KEY"-->
-            <!--android:value="@string/google_maps_key" />-->
+        <!-- <meta-data -->
+        <!-- android:name="com.google.android.geo.API_KEY" -->
+        <!-- android:value="@string/google_maps_key" /> -->
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -58,7 +58,8 @@
             android:name=".Activity.UserTravelActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".Activity.AddTripActivity" />
-        <activity android:name=".Activity.PersonalActivity"></activity>
+        <activity android:name=".Activity.PersonalActivity" />
+        <activity android:name=".Activity.NewSearchActivity"></activity>
     </application>
 
 </manifest>

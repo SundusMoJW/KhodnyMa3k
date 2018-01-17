@@ -27,6 +27,7 @@ import com.twins.sundus.osama.khodnyma3k.Classes.DrawerItem;
 import com.twins.sundus.osama.khodnyma3k.Fragment.HomeFragment;
 import com.twins.sundus.osama.khodnyma3k.Fragment.OrderFragment;
 import com.twins.sundus.osama.khodnyma3k.Fragment.TravelsFragment;
+import com.twins.sundus.osama.khodnyma3k.Fragment.myTripFragment;
 import com.twins.sundus.osama.khodnyma3k.Interface.OnDrawerItemClickListener;
 import com.twins.sundus.osama.khodnyma3k.R;
 import com.twins.sundus.osama.khodnyma3k.Util.FragmentsUtil;
@@ -136,21 +137,21 @@ public class UserTravelActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent.hasExtra(KEY)) {
             if (intent.getIntExtra(KEY, 1) == 2) {
-
-                FragmentsUtil.replaceFragment(this, R.id.frame_layout, new TravelsFragment());
-                tv_title.setText(getResources().getText(R.string.tvtravel));
+                FragmentsUtil.replaceFragment(this, R.id.frame_layout, new myTripFragment());
+                tv_title.setText(getResources().getText(R.string.myTravel));
                 updateDrawer(2);
-
             } else if (intent.getIntExtra(KEY, 1) == 3) {
                 tv_title.setText(getResources().getText(R.string.tvOrder));
                 FragmentsUtil.replaceFragment(this, R.id.frame_layout, new OrderFragment());
                 updateDrawer(3);
-
-            } else {
+//            } else if (intent.getIntExtra(KEY, 0) == 1) {
+//                FragmentsUtil.addFragment(this, R.id.frame_layout, new EnterDataDeviceFragment());
+//                tv_title.setText(getResources().getText(R.string.enter_data_device));
+//                updateDrawer(3);
+            } else if(intent.getIntExtra(KEY, 1) == 0) {
                 FragmentsUtil.replaceFragment(this, R.id.frame_layout, new TravelsFragment());
                 tv_title.setText(getResources().getText(R.string.tvtravel));
-                updateDrawer(2);
-
+                updateDrawer(1);
             }
         }
 
@@ -254,8 +255,8 @@ public class UserTravelActivity extends AppCompatActivity {
                 menu.setVisibility(View.VISIBLE);
                 break;
             case 2:
-                tv_title.setText(getResources().getText(R.string.tvtravel));
-                FragmentsUtil.replaceFragment(this, R.id.frame_layout, new TravelsFragment());
+                tv_title.setText(getResources().getText(R.string.myTravel));
+                FragmentsUtil.replaceFragment(this, R.id.frame_layout, new myTripFragment());
 
                 menu.setVisibility(View.VISIBLE);
                 break;
@@ -296,10 +297,14 @@ public class UserTravelActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 //        super.onBackPressed();
-        if(getSupportFragmentManager().getBackStackEntryCount() > 0) {
+//        if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+//            FragmentsUtil.replaceFragment(this, R.id.frame_layout, new OrderFragment());
+//            updateDrawer(3);
+//        } else
+            if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             getSupportFragmentManager().popBackStack();
             return;
-        }else {
+        } else {
             Intent requestActivity = new Intent(UserTravelActivity.this, MainActivity.class);
             startActivity(requestActivity);
             finish();

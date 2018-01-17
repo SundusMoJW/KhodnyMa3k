@@ -5,39 +5,44 @@ package com.twins.sundus.osama.khodnyma3k.Classes;
  */
 
 public class DataTravel {
-    private long date;
-    private long time;
+    private String date;
+    private String time;
     private int number;
-    private String fromTo;
+    private String from;
+    private String to;
     private String name;
     private String address;
     private int Slary;
     private int img;
 
-    public DataTravel(long date, long time, int number, String fromTo, String name, String address, int slary, int img) {
+    public DataTravel() {
+    }
+
+    public DataTravel(String date, String time, int number, String from, String to, String name, String address, int slary, int img) {
         this.date = date;
         this.time = time;
         this.number = number;
-        this.fromTo = fromTo;
+        this.from = from;
+        this.to = to;
         this.name = name;
         this.address = address;
         Slary = slary;
         this.img = img;
     }
 
-    public long getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public long getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(long time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -49,12 +54,20 @@ public class DataTravel {
         this.number = number;
     }
 
-    public String getFromTo() {
-        return fromTo;
+    public String getFrom() {
+        return from;
     }
 
-    public void setFromTo(String fromTo) {
-        this.fromTo = fromTo;
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
     }
 
     public String getName() {

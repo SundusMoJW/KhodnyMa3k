@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="15dp"
-    android:clickable="true"
-    android:focusable="true"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
+    android:layout_marginTop="5dp"
+    android:clickable="true"
+    android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:layoutDirection="rtl"
     android:textDirection="rtl"
-    android:layout_marginTop="5dp"
     app:cardCornerRadius="2dp"
     app:cardElevation="5dp">
 
@@ -30,8 +30,7 @@
             android:padding="5dp"
             android:text="9:30 am"
             android:textDirection="ltr"
-            android:textSize="@dimen/titel"
-  />
+            android:textSize="@dimen/titel" />
 
         <TextView
             android:id="@+id/date"
@@ -50,11 +49,64 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:layout_below="@id/date"
+            android:layout_centerVertical="true"
             android:layout_margin="5dp"
             android:padding="5dp"
             android:text="من مكة الى الرياض"
+            android:textColor="@color/black"
+            android:textSize="@dimen/titel"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/red_ellipse"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_below="@id/date"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            app:srcCompat="@drawable/ic_red_ellipse" />
+
+        <View
+            android:id="@+id/verticalView"
+            android:layout_width="0.5dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/red_ellipse"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/colorAccent" />
+
+        <ImageView
+            android:id="@+id/green_ellipse"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_below="@id/verticalView"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            app:srcCompat="@drawable/ic_green_ellipse" />
+
+        <TextView
+            android:id="@+id/from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/date"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@id/red_ellipse"
+            android:text="من الرياض"
+            android:textColor="@color/black"
+            android:textSize="@dimen/titel" />
+
+        <TextView
+            android:id="@+id/to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/from"
+            android:layout_marginTop="30dp"
+            android:layout_toEndOf="@id/green_ellipse"
+            android:text="إلى الرياض"
             android:textColor="@color/black"
             android:textSize="@dimen/titel" />
 
@@ -68,8 +120,7 @@
             android:padding="5dp"
             android:text="3"
             android:textColor="@color/ic_color"
-            android:textSize="@dimen/titel"
-             />
+            android:textSize="@dimen/titel" />
 
         <TextView
             android:id="@+id/tv"
@@ -86,7 +137,7 @@
             android:id="@+id/view1"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:layout_below="@id/tv"
+            android:layout_below="@id/to"
             android:layout_margin="5dp"
             android:background="@color/colorAccent" />
         <!--<com.facebook.drawee.view.SimpleDraweeView-->
@@ -100,16 +151,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
             android:layout_below="@id/view1"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_weight="0.8">
+                android:layout_weight="0.8"
+                android:gravity="center_vertical">
 
                 <ImageView
                     android:id="@+id/img"
@@ -130,8 +181,7 @@
                     android:layout_toEndOf="@id/img"
                     android:text="من الرياض"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/textSize"
-                     />
+                    android:textSize="@dimen/textSize" />
 
                 <TextView
                     android:id="@+id/userAddress"
@@ -141,13 +191,14 @@
                     android:layout_toEndOf="@id/img"
                     android:text="الرياض - الرياض"
                     android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/textSize"
-                     />
+                    android:textSize="@dimen/textSize" />
             </RelativeLayout>
-<View
-    android:layout_width="0.5dp"
-    android:layout_height="match_parent"
-    android:background="@color/colorAccent"/>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorAccent" />
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -160,21 +211,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/time"
-                    android:gravity="center"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
+                    android:gravity="center"
                     android:padding="5dp"
                     android:text="3"
                     android:textColor="@color/ic_color"
-                    android:textSize="@dimen/textSize"
-                   />
+                    android:textSize="@dimen/textSize" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/number"
-                    android:text="@string/allTv_number"
                     android:layout_marginLeft="10dp"
+                    android:text="@string/allTv_number"
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/textSize" />
             </LinearLayout>

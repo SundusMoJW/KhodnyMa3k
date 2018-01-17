@@ -80,4 +80,6 @@
     <string name="age">العمر</string>
     <string name="on_time">مرة واحدة</string>
     <string name="many_time">التكرار  أسبوعيا</string>
+    <string name="savedPlace">المفضلة</string>
+    <string name="myTravel">رحلاتي</string>
 </resources>

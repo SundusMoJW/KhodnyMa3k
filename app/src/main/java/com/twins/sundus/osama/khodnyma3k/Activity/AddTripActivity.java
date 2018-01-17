@@ -1,11 +1,15 @@
 package com.twins.sundus.osama.khodnyma3k.Activity;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -17,10 +21,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.twins.sundus.osama.khodnyma3k.Adapter.MenuAdapter;
 import com.twins.sundus.osama.khodnyma3k.Classes.DrawerItem;
@@ -31,6 +37,7 @@ import com.twins.sundus.osama.khodnyma3k.Util.FragmentsUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -54,7 +61,10 @@ public class AddTripActivity extends AppCompatActivity {
     private int goDialog;
     private ScrollView linearLayout;
     private Button go_to_live;
-    private EditText edPlace;
+    private TextInputLayout date;
+    private TextInputLayout time;
+    private EditText edtime;
+    private EditText eddate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,25 +127,8 @@ public class AddTripActivity extends AppCompatActivity {
                 toggleSlidingMenu();
             }
         });
-        edPlace = findViewById(R.id.edPlace);
-//        edPlace.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                try {
-//                    Intent intent =
-//                            new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
-//                                    .build(this);
-//                    startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
-//                } catch (GooglePlayServicesRepairableException e) {
-//                    // TODO: Handle the error.
-//                } catch (GooglePlayServicesNotAvailableException e) {
-//                    // TODO: Handle the error.
-//                }
-//            }
-//        });
+
         Drawer.setDrawerListener(mDrawerToggle);
-        FragmentsUtil.replaceFragment(this, R.id.frame_layout, new HomeFragment());
 
         go_to_live.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,10 +143,15 @@ public class AddTripActivity extends AppCompatActivity {
                 dialog.setContentView(R.layout.go_live_dialog);
                 final Button driver = dialog.findViewById(R.id.driver);
                 final Button user = dialog.findViewById(R.id.user);
-                EditText tvGo = dialog.findViewById(R.id.tvGo);
+                final EditText tvGo = dialog.findViewById(R.id.tvGo);
                 TextView tvOk = dialog.findViewById(R.id.tvOk);
                 TextView tvCancel = dialog.findViewById(R.id.tvCancel);
-
+                tvGo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        /********* go to search************/
+                    }
+                });
                 driver.setBackgroundColor(Color.parseColor("#000000"));
                 user.setBackground(getResources().getDrawable(R.drawable.edit_text));
 
@@ -164,13 +162,21 @@ public class AddTripActivity extends AppCompatActivity {
                         driver.setTextColor(Color.parseColor("#ffffff"));
                         user.setTextColor(Color.parseColor("#000000"));
                         user.setBackground(getResources().getDrawable(R.drawable.edit_text));
+                        tvGo.setVisibility(View.VISIBLE);
+                        tvGo.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent=new Intent(AddTripActivity.this,SearchActivity.class);
+                                startActivity(intent);
+                            }
+                        });
                         goDialog = 0;
-
                     }
                 });
                 user.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        tvGo.setVisibility(View.GONE);
                         user.setBackgroundColor(Color.parseColor("#000000"));
                         driver.setBackground(getResources().getDrawable(R.drawable.edit_text));
                         driver.setTextColor(Color.parseColor("#000000"));
@@ -183,13 +189,15 @@ public class AddTripActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         if (goDialog == 0) {
                             /**** Driver Activity****/
-
+                            Intent requestActivity = new Intent(AddTripActivity.this, RequestActivity.class);
+                            startActivity(requestActivity);
                             dialog.cancel();
                             goDialog = 0;
                         } else {
                             /**** User Activity****/
-                            Intent requestActivity = new Intent(AddTripActivity.this, RequestActivity.class);
-                            startActivity(requestActivity);
+                            Intent intent = new Intent(AddTripActivity.this, UserTravelActivity.class);
+                            intent.putExtra(KEY,0);
+                            startActivity(intent);
                             dialog.cancel();
                             goDialog = 0;
                         }
@@ -206,6 +214,49 @@ public class AddTripActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+        date = findViewById(R.id.date);
+        time = findViewById(R.id.time);
+        eddate = findViewById(R.id.eddate);
+        edtime = findViewById(R.id.edtime);
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar c = Calendar.getInstance();
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        AddTripActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        String myTime = dayOfMonth + "/" + (month + 1) + "/" + year;
+                        eddate.setText(myTime);
+                    }
+                }, year, month, day);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                    datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+                }
+                datePickerDialog.show();
+            }
+        });
+        time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(AddTripActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        edtime.setText(selectedHour + ":" + selectedMinute);
+                    }
+                }, hour, minute, true);//Yes 24 hour time
+                mTimePicker.setTitle("Select Time");
+                mTimePicker.show();
+            }
+        });
+
 
     }
 
@@ -277,4 +328,12 @@ public class AddTripActivity extends AppCompatActivity {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+//        Intent requestActivity = new Intent(AddTripActivity.this, MainActivity.class);
+//        requestActivity.putExtra(KEY,1);
+//        startActivity(requestActivity);
+        finish();
+    }
 }

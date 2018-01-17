@@ -11,8 +11,17 @@ public interface AppConstant {
     int FRAGMENT_DATAT_RAVEL = 0;
     int FRAGMENT_DEVICE_DATA_FRAGMENT = 1;
     int COUNT = 2;
-    String KEY="key";
-    int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
-    String TAG ="//**";
+    int PLACE_AUTOCOMPLETE_REQUEST_CODE = 10;
+    int PLACE_AUTOCOMPLETE_REQUEST2_CODE = 20;
     int MY_LOCATION_REQUEST_CODE=2;
+    int MAP_ACTIVITY_SELECT_REQUEST=30;
+    int MAP_ACTIVITY_GO_REQUEST=40;
+    int MAP_ACTIVITY_SELECT_RESULT=50;
+    int MAP_ACTIVITY_GO_RESULT=60;
+    String KEY_LOCATION="keyLoction";
+    String MY_LOCATION="myLoction";
+    String GO_LOCATION="goLocation";
+    String KEY="key";
+    String TAG ="//**";
+    String RETURN_VALUE = "returnValue";
 }

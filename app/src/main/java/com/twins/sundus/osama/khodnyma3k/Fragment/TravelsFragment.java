@@ -1,6 +1,7 @@
 package com.twins.sundus.osama.khodnyma3k.Fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
@@ -15,8 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.twins.sundus.osama.khodnyma3k.Activity.TravelActivity;
 import com.twins.sundus.osama.khodnyma3k.Adapter.DataTravelAdapter;
 import com.twins.sundus.osama.khodnyma3k.Classes.DataTravel;
+import com.twins.sundus.osama.khodnyma3k.Interface.OnDrawerItemClickListener;
 import com.twins.sundus.osama.khodnyma3k.R;
 
 import java.util.ArrayList;
@@ -26,9 +29,8 @@ import java.util.ArrayList;
  */
 public class TravelsFragment extends Fragment {
 
-
     private ArrayList<DataTravel> data;
-    DataTravelAdapter rvadapter;
+    private DataTravelAdapter rvadapter;
     public TravelsFragment() {
         // Required empty public constructor
     }
@@ -43,7 +45,17 @@ public class TravelsFragment extends Fragment {
 
         data=fill_with_data();
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
-        rvadapter = new DataTravelAdapter(getActivity(), data);
+        rvadapter = new DataTravelAdapter(getActivity(), data, new OnDrawerItemClickListener() {
+            @Override
+            public void onClick(int postition) {
+                Intent intent=new Intent(getActivity(), TravelActivity.class);
+                startActivity(intent);
+            }
+            @Override
+            public void onPhotoClick(View view) {
+                /************** no thing************/
+            }
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(rvadapter);
         //enable search
@@ -55,10 +67,10 @@ public class TravelsFragment extends Fragment {
     public ArrayList<DataTravel> fill_with_data() {
 
         ArrayList<DataTravel> data = new ArrayList<>();
-        data.add(new DataTravel(010,123 ,3,"من الرياض الى مكة","أسامة","الرياض",3,R.drawable.default_placeholder));
-        data.add(new DataTravel(010,123 ,3,"من الرياض الى مكة","أسامة","الرياض",3,R.drawable.default_placeholder));
-        data.add(new DataTravel(010,123 ,3,"من الرياض الى مكة","أسامة","الرياض",3,R.drawable.default_placeholder));
-        data.add(new DataTravel(010,123 ,3,"من الرياض الى مكة","أسامة","الرياض",3,R.drawable.default_placeholder));
+        data.add(new DataTravel("17/1/2018", "8:20",3,"مكة","الرياض","أسامة","الرياض",3,R.drawable.default_placeholder));
+        data.add(new DataTravel("17/1/2018", "8:20",3,"مكة","الرياض","أسامة","الرياض",3,R.drawable.default_placeholder));
+        data.add(new DataTravel("17/1/2018", "8:20",3,"مكة","الرياض","أسامة","الرياض",3,R.drawable.default_placeholder));
+        data.add(new DataTravel("17/1/2018", "8:20",3,"مكة","الرياض","أسامة","الرياض",3,R.drawable.default_placeholder));
         return data;
     }
     @Override

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.twins.sundus.osama.khodnyma3k.Classes.DataTravel;
+import com.twins.sundus.osama.khodnyma3k.Interface.OnDrawerItemClickListener;
 import com.twins.sundus.osama.khodnyma3k.R;
 
 import java.util.ArrayList;
@@ -23,15 +24,16 @@ import java.util.ArrayList;
 
 public class DataTravelAdapter extends RecyclerView.Adapter<DataTravelAdapter.ViewHolder> implements Filterable {
 
-    //    private final OnDrawerItemClickListener listener;
+    private final OnDrawerItemClickListener listener;
     private ArrayList<DataTravel> item = new ArrayList<>();
     private ArrayList<DataTravel> itemFilter = new ArrayList<>();
     private Context context;
 
-    public DataTravelAdapter(Context context, ArrayList<DataTravel> originlItem) {
+    public DataTravelAdapter(Context context, ArrayList<DataTravel> originlItem, OnDrawerItemClickListener listener) {
         this.context = context;
         this.item = originlItem;
         this.itemFilter = originlItem;
+        this.listener = listener;
     }
 
 
@@ -44,17 +46,22 @@ public class DataTravelAdapter extends RecyclerView.Adapter<DataTravelAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.time.setText(item.get(position).getTime() + " am");
-        holder.date.setText(item.get(position).getDate()+"");
-        holder.userAddress.setText(item.get(position).getAddress() );
-        holder.fromTo.setText(item.get(position).getFromTo());
+        holder.date.setText(item.get(position).getDate() + "");
+        holder.userAddress.setText(item.get(position).getAddress());
+        holder.from.setText("من "+item.get(position).getFrom() );
+        holder.to.setText( "إلى "+item.get(position).getTo());
         holder.name.setText(item.get(position).getName());
         holder.number.setText(item.get(position).getNumber() + "");
         holder.numSalary.setText(item.get(position).getSlary() + "ريال");
         holder.image.setImageResource(R.drawable.default_placeholder);
-
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onClick(position);
+            }
+        });
 //        Uri uri = Uri.parse( + item.get(position).getFilePath().replace("~", ""));
 //        holder.image.setImageURI(uri);
-
     }
 
 
@@ -90,7 +97,7 @@ public class DataTravelAdapter extends RecyclerView.Adapter<DataTravelAdapter.Vi
                 } else {
                     ArrayList<DataTravel> filteredList = new ArrayList<>();
                     for (DataTravel dataTravel : itemFilter) {
-                        if (dataTravel.getFromTo().toLowerCase().contains(charString)) {
+                        if (dataTravel.getFrom().toLowerCase().contains(charString) || dataTravel.getTo().toLowerCase().contains(charString)) {
                             filteredList.add(dataTravel);
                         }
                     }
@@ -117,7 +124,8 @@ public class DataTravelAdapter extends RecyclerView.Adapter<DataTravelAdapter.Vi
         TextView name;
         TextView userAddress;
         TextView numSalary;
-        TextView fromTo;
+        TextView from;
+        TextView to;
         TextView number;
         CardView cardView;
 
@@ -130,7 +138,8 @@ public class DataTravelAdapter extends RecyclerView.Adapter<DataTravelAdapter.Vi
             name = view.findViewById(R.id.name);
             userAddress = view.findViewById(R.id.userAddress);
             numSalary = view.findViewById(R.id.numSalary);
-            fromTo = view.findViewById(R.id.fromTo);
+            from = view.findViewById(R.id.from);
+            to = view.findViewById(R.id.to);
             number = view.findViewById(R.id.number);
             cardView = view.findViewById(R.id.cardView);
         }

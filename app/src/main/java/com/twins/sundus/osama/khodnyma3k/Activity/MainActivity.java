@@ -22,12 +22,6 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.places.AutocompleteFilter;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.twins.sundus.osama.khodnyma3k.Adapter.MenuAdapter;
 import com.twins.sundus.osama.khodnyma3k.Classes.DrawerItem;
 import com.twins.sundus.osama.khodnyma3k.Fragment.HomeFragment;
@@ -41,10 +35,6 @@ import java.util.Arrays;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 import static com.twins.sundus.osama.khodnyma3k.Interface.AppConstant.KEY;
-import static com.twins.sundus.osama.khodnyma3k.Interface.AppConstant.PLACE_AUTOCOMPLETE_REQUEST_CODE;
-import static com.twins.sundus.osama.khodnyma3k.Interface.AppConstant.TAG;
-
-//TAG
 
 public class MainActivity extends AppCompatActivity {
     private static ArrayList<DrawerItem> items;
@@ -131,22 +121,8 @@ public class MainActivity extends AppCompatActivity {
         edPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                try {
-                    AutocompleteFilter typeFilter = new AutocompleteFilter.Builder()
-                            .setTypeFilter(AutocompleteFilter.TYPE_FILTER_ADDRESS)
-                            .build();
-
-                    Intent intent =
-                            new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_OVERLAY)
-                                    .setFilter(typeFilter)
-                                    .build(MainActivity.this);
-                    startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
-                } catch (GooglePlayServicesRepairableException e) {
-                    // TODO: Handle the error.
-                } catch (GooglePlayServicesNotAvailableException e) {
-                    // TODO: Handle the error.
-                }
+                Intent intent=new Intent(MainActivity.this,SearchActivity.class);
+                startActivity(intent);
             }
         });
         Drawer.setDrawerListener(mDrawerToggle);
@@ -165,10 +141,15 @@ public class MainActivity extends AppCompatActivity {
                 dialog.setContentView(R.layout.go_live_dialog);
                 final Button driver = dialog.findViewById(R.id.driver);
                 final Button user = dialog.findViewById(R.id.user);
-                EditText tvGo = dialog.findViewById(R.id.tvGo);
+                final EditText tvGo = dialog.findViewById(R.id.tvGo);
                 TextView tvOk = dialog.findViewById(R.id.tvOk);
                 TextView tvCancel = dialog.findViewById(R.id.tvCancel);
-
+                tvGo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        /********* go to search************/
+                    }
+                });
                 driver.setBackgroundColor(Color.parseColor("#000000"));
                 user.setBackground(getResources().getDrawable(R.drawable.edit_text));
 
@@ -179,13 +160,21 @@ public class MainActivity extends AppCompatActivity {
                         driver.setTextColor(Color.parseColor("#ffffff"));
                         user.setTextColor(Color.parseColor("#000000"));
                         user.setBackground(getResources().getDrawable(R.drawable.edit_text));
+                        tvGo.setVisibility(View.VISIBLE);
+                        tvGo.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent=new Intent(MainActivity.this,SearchActivity.class);
+                                startActivity(intent);
+                            }
+                        });
                         goDialog = 0;
-
                     }
                 });
                 user.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        tvGo.setVisibility(View.GONE);
                         user.setBackgroundColor(Color.parseColor("#000000"));
                         driver.setBackground(getResources().getDrawable(R.drawable.edit_text));
                         driver.setTextColor(Color.parseColor("#000000"));
@@ -198,13 +187,15 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         if (goDialog == 0) {
                             /**** Driver Activity****/
-
+                            Intent requestActivity = new Intent(MainActivity.this, RequestActivity.class);
+                            startActivity(requestActivity);
                             dialog.cancel();
                             goDialog = 0;
                         } else {
                             /**** User Activity****/
-                            Intent requestActivity = new Intent(MainActivity.this, RequestActivity.class);
-                            startActivity(requestActivity);
+                            Intent intent = new Intent(MainActivity.this, UserTravelActivity.class);
+                            intent.putExtra(KEY,0);
+                            startActivity(intent);
                             dialog.cancel();
                             goDialog = 0;
                         }
@@ -305,21 +296,5 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                Place place = PlaceAutocomplete.getPlace(this, data);
-                edPlace.setText(place.getName());
-                Log.i(TAG, "Place: " + place.getName());
-            } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
-                Status status = PlaceAutocomplete.getStatus(this, data);
-                // TODO: Handle the error.
-                Log.i(TAG, status.getStatusMessage());
 
-            } else if (resultCode == RESULT_CANCELED) {
-                // The user canceled the operation.
-            }
-        }
-    }
 }

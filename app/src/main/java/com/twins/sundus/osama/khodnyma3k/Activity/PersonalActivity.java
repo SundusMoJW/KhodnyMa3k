@@ -54,7 +54,7 @@ public class PersonalActivity extends AppCompatActivity {
     private int goDialog;
     private ScrollView linearLayout;
     private Button go_to_live;
-    private EditText edPlace;
+//    private EditText edPlace;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,10 +116,10 @@ public class PersonalActivity extends AppCompatActivity {
                 toggleSlidingMenu();
             }
         });
-        edPlace = findViewById(R.id.edPlace);
+//        edPlace = findViewById(R.id.edPlace);
 
         Drawer.setDrawerListener(mDrawerToggle);
-        FragmentsUtil.replaceFragment(this, R.id.frame_layout, new HomeFragment());
+//        FragmentsUtil.replaceFragment(this, R.id.frame_layout, new HomeFragment());
 
         go_to_live.setOnClickListener(new View.OnClickListener() {
             @Override

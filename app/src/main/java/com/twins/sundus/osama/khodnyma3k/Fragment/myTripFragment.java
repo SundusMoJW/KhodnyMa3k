@@ -2,7 +2,6 @@ package com.twins.sundus.osama.khodnyma3k.Fragment;
 
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,26 +13,23 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.twins.sundus.osama.khodnyma3k.Adapter.OrderTravelAdapter;
-import com.twins.sundus.osama.khodnyma3k.Classes.OrderTravel;
+import com.twins.sundus.osama.khodnyma3k.Adapter.DataTravelAdapter;
+import com.twins.sundus.osama.khodnyma3k.Classes.DataTravel;
+import com.twins.sundus.osama.khodnyma3k.Interface.OnDrawerItemClickListener;
 import com.twins.sundus.osama.khodnyma3k.R;
-import com.twins.sundus.osama.khodnyma3k.Util.FragmentsUtil;
 
 import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class OrderFragment extends Fragment {
-    private ArrayList<OrderTravel> data;
-    private FloatingActionButton fab;
-    private TextView tv_title;
-    private OrderTravelAdapter rvadapter;
+public class myTripFragment extends Fragment {
 
-    public OrderFragment() {
+    private ArrayList<DataTravel> data;
+    private DataTravelAdapter rvadapter;
+    public myTripFragment() {
         // Required empty public constructor
     }
 
@@ -42,20 +38,21 @@ public class OrderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_order, container, false);
-        fab = view.findViewById(R.id.fab);
-        tv_title = getActivity().findViewById(R.id.tv_title);
-        fab.setOnClickListener(new View.OnClickListener() {
+                View view=inflater.inflate(R.layout.fragment_my_trip, container, false);
+
+        data=fill_with_data();
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
+        rvadapter = new DataTravelAdapter(getActivity(), data, new OnDrawerItemClickListener() {
             @Override
-            public void onClick(View view) {
-                /*************** dialog  and go to add device or add trip *********/
-                FragmentsUtil.addFragment(getActivity(), R.id.frame_layout, new EnterDataDeviceFragment());
-                tv_title.setText(getResources().getText(R.string.enter_data_device));
+            public void onClick(int postition) {
+//                Intent intent=new Intent(getActivity(), TravelActivity.class);
+//                startActivity(intent);
+            }
+            @Override
+            public void onPhotoClick(View view) {
+            /************** no thing************/
             }
         });
-        data = fill_with_data();
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
-       rvadapter = new OrderTravelAdapter(getActivity(), data);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(rvadapter);
         //enable search
@@ -64,15 +61,13 @@ public class OrderFragment extends Fragment {
         return view;
     }
 
-    public ArrayList<OrderTravel> fill_with_data() {
+    public ArrayList<DataTravel> fill_with_data() {
 
-        ArrayList<OrderTravel> data = new ArrayList<>();
-        data.add(new OrderTravel("17/1/2018", "8:20", 3, "من الرياض الى مكة", 3, true, 1));
-        data.add(new OrderTravel("17/1/2018", "8:20", 3, "من الرياض الى مكة", 3, true, 2));
-        data.add(new OrderTravel("17/1/2018", "8:20", 3, "من الرياض الى مكة", 3, true, 3));
-        data.add(new OrderTravel("17/1/2018", "8:20", 3, "من الرياض الى مكة", 3, true, 2));
-        data.add(new OrderTravel("17/1/2018", "8:20", 3, "من الرياض الى مكة", 3, true, 1));
-        data.add(new OrderTravel("17/1/2018", "8:20", 3, "من الرياض الى مكة", 3, true, 3));
+        ArrayList<DataTravel> data = new ArrayList<>();
+        data.add(new DataTravel("17/1/2018", "8:20" ,3,"مكة","الرياض","أسامة","الرياض",3,R.drawable.default_placeholder));
+        data.add(new DataTravel("17/1/2018", "8:20",3,"مكة","الرياض","أسامة","الرياض",3,R.drawable.default_placeholder));
+        data.add(new DataTravel("17/1/2018", "8:20",3,"مكة","الرياض","أسامة","الرياض",3,R.drawable.default_placeholder));
+        data.add(new DataTravel("17/1/2018", "8:20",3,"مكة","الرياض","أسامة","الرياض",3,R.drawable.default_placeholder));
         return data;
     }
     @Override

@@ -5,15 +5,15 @@ package com.twins.sundus.osama.khodnyma3k.Classes;
  */
 
 public class OrderTravel {
-    private long date;
-    private long time;
+    private String date;
+    private String time;
     private int number;
     private String fromTo;
     private int Slary;
     private boolean select;
     private int direction;
 
-    public OrderTravel(long date, long time, int number, String fromTo, int slary, boolean select, int direction) {
+    public OrderTravel(String date, String time, int number, String fromTo, int slary, boolean select, int direction) {
         this.date = date;
         this.time = time;
         this.number = number;
@@ -23,19 +23,19 @@ public class OrderTravel {
         this.direction = direction;
     }
 
-    public long getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public long getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(long time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

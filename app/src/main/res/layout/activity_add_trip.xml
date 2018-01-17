@@ -5,20 +5,20 @@
     android:id="@+id/DrawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:layoutDirection="rtl"
     android:textDirection="rtl"
-    android:background="@color/white"
     tools:context="com.twins.sundus.osama.khodnyma3k.Activity.AddTripActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <FrameLayout
-            android:id="@+id/frame_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:animateLayoutChanges="true" />
+        <!--<FrameLayout-->
+        <!--android:id="@+id/frame_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:animateLayoutChanges="true" />-->
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -57,7 +57,7 @@
                     android:layout_marginStart="?attr/actionBarSize"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:text="@string/titel"
+                    android:text="@string/addTrip"
                     android:textColor="@color/black"
                     android:textSize="@dimen/titel" />
             </RelativeLayout>
@@ -78,6 +78,7 @@
                     android:layout_height="wrap_content">
 
                     <android.support.design.widget.TextInputLayout
+                        android:id="@+id/time"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -88,7 +89,7 @@
                         app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
                         <EditText
-                            android:id="@+id/time"
+                            android:id="@+id/edtime"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawableLeft="@drawable/down_arrow"
@@ -99,6 +100,7 @@
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
+                        android:id="@+id/date"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -109,7 +111,7 @@
                         app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
                         <EditText
-                            android:id="@+id/date"
+                            android:id="@+id/eddate"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawableLeft="@drawable/down_arrow"
@@ -186,7 +188,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/num_user"
-                            android:inputType="text"
+                            android:inputType="number"
                             android:textSize="@dimen/textSize" />
                     </android.support.design.widget.TextInputLayout>
 
@@ -205,7 +207,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/salary"
-                            android:inputType="text"
+                            android:inputType="number"
                             android:textSize="@dimen/textSize" />
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
@@ -273,21 +275,23 @@
                         android:text="@string/both"
                         android:textColor="@color/ic_color" />
                 </RadioGroup>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_margin="5dp"
                     android:background="@color/ic_color" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
                     android:text="التكرار"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/titel"
-                    />
+                    android:textSize="@dimen/titel" />
+
                 <RadioGroup
                     android:id="@+id/rgoup2"
                     android:layout_width="match_parent"
@@ -299,9 +303,9 @@
                     <RadioButton
                         android:id="@+id/oneTime"
                         android:layout_width="wrap_content"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
+                        android:layout_weight="1"
                         android:text="@string/on_time"
                         android:textColor="@color/ic_color" />
 
@@ -311,73 +315,96 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:text="@string/many_time"
-                        android:textColor="@color/ic_color"/>
+                        android:textColor="@color/ic_color" />
 
                 </RadioGroup>
+
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textDirection="ltr"
                     android:gravity="center"
                     android:layoutDirection="ltr"
-                    android:layout_height="wrap_content">
-                    <TextView
+                    android:textDirection="ltr">
+
+                    <ToggleButton
                         android:id="@+id/tv1"
-                        android:layout_margin="5dp"
                         android:layout_width="30dp"
-                        android:text="S"
-                        android:gravity="center"
                         android:layout_height="30dp"
-                        android:background="@drawable/edit_text"/>
-                    <TextView
+                        android:layout_margin="5dp"
+                        android:background="@drawable/toggle_selector"
+                        android:gravity="center"
+                        android:textColor="@drawable/toggel_text_color"
+                        android:textOff="S"
+                        android:textOn="S" />
+
+                    <ToggleButton
                         android:id="@+id/tv2"
                         android:layout_width="30dp"
-                        android:layout_margin="5dp"
-                        android:gravity="center"
-                        android:text="F"
                         android:layout_height="30dp"
-                        android:background="@drawable/edit_text"/>
-                    <TextView
+                        android:layout_margin="5dp"
+                        android:background="@drawable/toggle_selector"
+                        android:gravity="center"
+                        android:textColor="@drawable/toggel_text_color"
+                        android:textOff="F"
+                        android:textOn="F" />
+
+                    <ToggleButton
                         android:id="@+id/tv3"
-                        android:gravity="center"
                         android:layout_width="30dp"
-                        android:text="T"
                         android:layout_height="30dp"
                         android:layout_margin="5dp"
-                        android:background="@drawable/edit_text"/>
-                    <TextView
+                        android:background="@drawable/toggle_selector"
+                        android:gravity="center"
+                        android:textColor="@drawable/toggel_text_color"
+                        android:textOff="T"
+                        android:textOn="T" />
+
+                    <ToggleButton
                         android:id="@+id/tv4"
                         android:layout_width="30dp"
-                        android:gravity="center"
-                        android:text="W"
-                        android:layout_margin="5dp"
                         android:layout_height="30dp"
-                        android:background="@drawable/edit_text"/>
-                    <TextView
+                        android:layout_margin="5dp"
+                        android:background="@drawable/toggle_selector"
+                        android:gravity="center"
+                        android:textColor="@drawable/toggel_text_color"
+                        android:textOff="W"
+                        android:textOn="W" />
+
+                    <ToggleButton
                         android:id="@+id/tv5"
                         android:layout_width="30dp"
-                        android:layout_margin="5dp"
-                        android:gravity="center"
-                        android:text="T"
                         android:layout_height="30dp"
-                        android:background="@drawable/edit_text"/>
-                    <TextView
+                        android:layout_margin="5dp"
+                        android:background="@drawable/toggle_selector"
+                        android:gravity="center"
+                        android:textColor="@drawable/toggel_text_color"
+                        android:textOff="T"
+                        android:textOn="T" />
+
+                    <ToggleButton
                         android:id="@+id/tv6"
                         android:layout_width="30dp"
-                        android:layout_margin="5dp"
-                        android:gravity="center"
-                        android:text="M"
                         android:layout_height="30dp"
-                        android:background="@drawable/edit_text"/>
-                    <TextView
+                        android:layout_margin="5dp"
+                        android:background="@drawable/toggle_selector"
+                        android:gravity="center"
+                        android:textColor="@drawable/toggel_text_color"
+                        android:textOff="M"
+                        android:textOn="M" />
+
+                    <ToggleButton
                         android:id="@+id/tv7"
                         android:layout_width="30dp"
-                        android:layout_margin="5dp"
-                        android:gravity="center"
-                        android:text="S"
                         android:layout_height="30dp"
-                        android:background="@drawable/edit_text"/>
+                        android:layout_margin="5dp"
+                        android:background="@drawable/toggle_selector"
+                        android:gravity="center"
+                        android:textColor="@drawable/toggel_text_color"
+                        android:textOff="S"
+                        android:textOn="S" />
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
@@ -402,13 +429,14 @@
                         android:id="@+id/sw1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="false"
                         android:textOff=""
                         android:textOn=""
-                        android:checked="false"
-                        android:theme="@style/SCBSwitch"
-                        android:textSize="@dimen/textSize" />
+                        android:textSize="@dimen/textSize"
+                        android:theme="@style/SCBSwitch" />
 
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
@@ -433,13 +461,14 @@
                         android:id="@+id/sw2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="false"
                         android:textOff=""
                         android:textOn=""
                         android:textSize="@dimen/textSize"
-                        android:checked="false"
                         android:theme="@style/SCBSwitch" />
 
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
@@ -464,13 +493,14 @@
                         android:id="@+id/sw3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="false"
                         android:textOff=""
                         android:textOn=""
-                        android:checked="false"
-                        android:theme="@style/SCBSwitch"
-                        android:textSize="@dimen/textSize" />
+                        android:textSize="@dimen/textSize"
+                        android:theme="@style/SCBSwitch" />
 
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"

@@ -3,6 +3,7 @@ package com.twins.sundus.osama.khodnyma3k.Fragment;
 import android.Manifest;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
@@ -13,6 +14,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +34,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.twins.sundus.osama.khodnyma3k.Activity.RequestActivity;
 import com.twins.sundus.osama.khodnyma3k.R;
 
 import static com.twins.sundus.osama.khodnyma3k.Interface.AppConstant.MY_LOCATION_REQUEST_CODE;
@@ -40,6 +43,7 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMyLocationButt
         GoogleMap.OnMyLocationClickListener,
         OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener {
+
     private GoogleMap mMap;
     private LocationRequest mLocationRequest;
     private Location mLastLocation;
@@ -89,6 +93,15 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMyLocationButt
                 final Dialog dialog = new Dialog(getActivity());
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); //before
                 dialog.setContentView(R.layout.trvel_temp);
+                final CardView cardView = dialog.findViewById(R.id.cardView);
+                cardView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent=new Intent(getActivity(), RequestActivity.class);
+                        startActivity(intent);
+                        dialog.cancel();
+                    }
+                });
                 dialog.setCancelable(true);
                 dialog.show();
                 return true;
@@ -155,11 +168,11 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMyLocationButt
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        final Dialog dialog = new Dialog(getActivity());
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); //before
-        dialog.setContentView(R.layout.trvel_temp);
-        dialog.setCancelable(true);
-        dialog.show();
+//        final Dialog dialog = new Dialog(getActivity());
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); //before
+//        dialog.setContentView(R.layout.trvel_temp);
+//        dialog.setCancelable(true);
+//        dialog.show();
     }
 
     protected synchronized void buildGoogleApiClient() {

@@ -142,10 +142,15 @@ public class TravelActivity extends AppCompatActivity {
                 dialog.setContentView(R.layout.go_live_dialog);
                 final Button driver = dialog.findViewById(R.id.driver);
                 final Button user = dialog.findViewById(R.id.user);
-                EditText tvGo = dialog.findViewById(R.id.tvGo);
+                final EditText tvGo = dialog.findViewById(R.id.tvGo);
                 TextView tvOk = dialog.findViewById(R.id.tvOk);
                 TextView tvCancel = dialog.findViewById(R.id.tvCancel);
-
+                tvGo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        /********* go to search************/
+                    }
+                });
                 driver.setBackgroundColor(Color.parseColor("#000000"));
                 user.setBackground(getResources().getDrawable(R.drawable.edit_text));
 
@@ -156,12 +161,21 @@ public class TravelActivity extends AppCompatActivity {
                         driver.setTextColor(Color.parseColor("#ffffff"));
                         user.setTextColor(Color.parseColor("#000000"));
                         user.setBackground(getResources().getDrawable(R.drawable.edit_text));
+                        tvGo.setVisibility(View.VISIBLE);
+                        tvGo.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent=new Intent(TravelActivity.this,SearchActivity.class);
+                                startActivity(intent);
+                            }
+                        });
                         goDialog = 0;
                     }
                 });
                 user.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        tvGo.setVisibility(View.GONE);
                         user.setBackgroundColor(Color.parseColor("#000000"));
                         driver.setBackground(getResources().getDrawable(R.drawable.edit_text));
                         driver.setTextColor(Color.parseColor("#000000"));
@@ -173,17 +187,24 @@ public class TravelActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         if (goDialog == 0) {
+                            /**** Driver Activity****/
+                            Intent requestActivity = new Intent(TravelActivity.this, RequestActivity.class);
+                            startActivity(requestActivity);
+                            finish();
                             dialog.cancel();
                             goDialog = 0;
                         } else {
                             /**** User Activity****/
-                            Intent requestActivity = new Intent(TravelActivity.this, RequestActivity.class);
-                            startActivity(requestActivity);
+                            Intent intent = new Intent(TravelActivity.this, UserTravelActivity.class);
+                            intent.putExtra(KEY,0);
+                            startActivity(intent);
+                            finish();
                             dialog.cancel();
                             goDialog = 0;
                         }
                     }
                 });
+
                 tvCancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

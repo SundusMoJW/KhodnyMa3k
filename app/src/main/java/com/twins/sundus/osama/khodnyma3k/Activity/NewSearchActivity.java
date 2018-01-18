@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -64,6 +65,7 @@ public class NewSearchActivity extends AppCompatActivity implements GoogleMap.On
     private Marker mCurrLocationMarker;
     private Button done;
     String keyLocation;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +113,18 @@ public class NewSearchActivity extends AppCompatActivity implements GoogleMap.On
                             finish();
                         }
                     }
+                }
+            }
+        });
+
+        fab=findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mMap.getMyLocation() != null) {
+                    // Check to ensure coordinates aren't null, probably a better way of doing this...
+                    LatLng latLng = new LatLng(mMap.getMyLocation().getLatitude(), mMap.getMyLocation().getLongitude());
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,18));
                 }
             }
         });
@@ -164,12 +178,12 @@ public class NewSearchActivity extends AppCompatActivity implements GoogleMap.On
 
         //Place current location marker9
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(latLng);
-        markerOptions.title("Current Position");
-//      BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)
-        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.car));
-        mCurrLocationMarker = mMap.addMarker(markerOptions);
+//        MarkerOptions markerOptions = new MarkerOptions();
+//        markerOptions.position(latLng);
+//        markerOptions.title("Current Position");
+////      BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)
+//        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.car));
+//        mCurrLocationMarker = mMap.addMarker(markerOptions);
         //move map camera
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
     }
@@ -195,6 +209,8 @@ public class NewSearchActivity extends AppCompatActivity implements GoogleMap.On
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.getUiSettings().setMyLocationButtonEnabled(false);
+
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(this,
                     Manifest.permission.ACCESS_FINE_LOCATION)
@@ -316,12 +332,12 @@ public class NewSearchActivity extends AppCompatActivity implements GoogleMap.On
             if (resultCode == RESULT_OK) {
                 Place place = PlaceAutocomplete.getPlace(this, data);
                 edPlace.setText(place.getName());
-                MarkerOptions markerOptions = new MarkerOptions();
-                markerOptions.position(place.getLatLng());
-                markerOptions.title("Current Position");
-//      BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)
-                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.car));
-                mCurrLocationMarker = mMap.addMarker(markerOptions);
+//                MarkerOptions markerOptions = new MarkerOptions();
+//                markerOptions.position(place.getLatLng());
+//                markerOptions.title("Current Position");
+////      BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)
+//                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.car));
+//                mCurrLocationMarker = mMap.addMarker(markerOptions);
                 //move map camera
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), 18));
                 Log.i(TAG, "Place: " + place.getName());

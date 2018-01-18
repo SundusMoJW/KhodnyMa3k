@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -49,6 +50,9 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMyLocationButt
     private Location mLastLocation;
     private GoogleApiClient mGoogleApiClient;
     private Marker mCurrLocationMarker;
+    private FloatingActionButton fab;
+    private FloatingActionButton fab_type;
+    private boolean flagMap;
 
     public HomeFragment() {
     }
@@ -67,8 +71,27 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMyLocationButt
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-
+        flagMap = false;
+        fab = view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mMap.getMyLocation() != null) {
+                    // Check to ensure coordinates aren't null, probably a better way of doing this...
+                    LatLng latLng = new LatLng(mMap.getMyLocation().getLatitude(), mMap.getMyLocation().getLongitude());
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
+                }
+            }
+        });
+        fab_type = view.findViewById(R.id.fab_type);
+        fab_type.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mMap != null && mMap.getMapType()==GoogleMap.MAP_TYPE_SATELLITE) {
+                    mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                }else mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+            }
+        });
         //current location
 //        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
 //                == PackageManager.PERMISSION_GRANTED) {
@@ -76,7 +99,6 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMyLocationButt
 //        } else {
 //            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_LOCATION_REQUEST_CODE);
 //        }
-
 
         return view;
     }
@@ -87,6 +109,7 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMyLocationButt
 //        LatLng sydney = new LatLng(-34, 151);
 //        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
 //        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.getUiSettings().setMyLocationButtonEnabled(false);
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
@@ -97,7 +120,7 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMyLocationButt
                 cardView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent=new Intent(getActivity(), RequestActivity.class);
+                        Intent intent = new Intent(getActivity(), RequestActivity.class);
                         startActivity(intent);
                         dialog.cancel();
                     }
@@ -125,11 +148,11 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMyLocationButt
         }
 
 //        You can prevent the My Location button from appearing by calling
-//        UiSettings.setMyLocationButtonEnabled(false).
+//        UiSettings.setMyLocationButtonEnabled(false);
 
-        mMap.setOnMyLocationButtonClickListener(this);
-        mMap.setOnMyLocationClickListener(this);
-        mMap.setOnInfoWindowClickListener(this);
+//        mMap.setOnMyLocationButtonClickListener(this);
+//        mMap.setOnMyLocationClickListener(this);
+//        mMap.setOnInfoWindowClickListener(this);
 
 //        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
 //                new LatLng(41.889, -87.622), 16));
@@ -225,12 +248,12 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMyLocationButt
 
         //Place current location marker9
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(latLng);
-        markerOptions.title("Current Position");
-//      BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)
-        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.car));
-        mCurrLocationMarker = mMap.addMarker(markerOptions);
+//        MarkerOptions markerOptions = new MarkerOptions();
+//        markerOptions.position(latLng);
+//        markerOptions.title("Current Position");
+////      BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)
+//        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.car));
+//        mCurrLocationMarker = mMap.addMarker(markerOptions);
         //move map camera
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
     }

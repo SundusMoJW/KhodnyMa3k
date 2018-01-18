@@ -47,8 +47,9 @@
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:layout_gravity="center"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/default_placeholder" />
+                    android:background="@drawable/edit_text"
+                    android:padding="20dp"
+                    app:srcCompat="@drawable/ic_image" />
             </LinearLayout>
 
             <ImageView

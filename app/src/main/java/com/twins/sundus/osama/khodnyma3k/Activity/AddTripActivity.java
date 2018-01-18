@@ -191,6 +191,7 @@ public class AddTripActivity extends AppCompatActivity {
                             /**** Driver Activity****/
                             Intent requestActivity = new Intent(AddTripActivity.this, RequestActivity.class);
                             startActivity(requestActivity);
+                            finish();
                             dialog.cancel();
                             goDialog = 0;
                         } else {
@@ -198,6 +199,7 @@ public class AddTripActivity extends AppCompatActivity {
                             Intent intent = new Intent(AddTripActivity.this, UserTravelActivity.class);
                             intent.putExtra(KEY,0);
                             startActivity(intent);
+                            finish();
                             dialog.cancel();
                             goDialog = 0;
                         }
@@ -218,7 +220,7 @@ public class AddTripActivity extends AppCompatActivity {
         time = findViewById(R.id.time);
         eddate = findViewById(R.id.eddate);
         edtime = findViewById(R.id.edtime);
-        date.setOnClickListener(new View.OnClickListener() {
+        eddate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final Calendar c = Calendar.getInstance();
@@ -239,7 +241,7 @@ public class AddTripActivity extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
-        time.setOnClickListener(new View.OnClickListener() {
+        edtime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar mcurrentTime = Calendar.getInstance();

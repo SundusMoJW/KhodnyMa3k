@@ -24,4 +24,5 @@ public interface AppConstant {
     String KEY="key";
     String TAG ="//**";
     String RETURN_VALUE = "returnValue";
+
 }

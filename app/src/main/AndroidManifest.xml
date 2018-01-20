@@ -59,7 +59,9 @@
             android:screenOrientation="portrait" />
         <activity android:name=".Activity.AddTripActivity" />
         <activity android:name=".Activity.PersonalActivity" />
-        <activity android:name=".Activity.NewSearchActivity"></activity>
+        <activity android:name=".Activity.NewSearchActivity" />
+        <activity android:name=".Activity.DirectionActivity" />
+        <activity android:name=".Activity.PickLocationActivity"></activity>
     </application>
 
 </manifest>

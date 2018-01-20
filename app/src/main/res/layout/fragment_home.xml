@@ -45,5 +45,5 @@
         app:elevation="5dp"
         app:fabSize="mini"
         app:rippleColor="@color/white"
-        app:srcCompat="@drawable/path" />
+        app:srcCompat="@drawable/ic_satellite" />
 </RelativeLayout>

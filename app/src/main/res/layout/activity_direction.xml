@@ -5,8 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:layoutDirection="rtl"
     android:orientation="vertical"
-    tools:context="com.twins.sundus.osama.khodnyma3k.Activity.NewSearchActivity">
+    android:textDirection="rtl"
+    tools:context="com.twins.sundus.osama.khodnyma3k.Activity.DirectionActivity">
 
     <fragment
         android:id="@+id/map"
@@ -14,25 +16,50 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <EditText
-        android:id="@+id/edPlace"
+    <LinearLayout
+        android:id="@+id/llayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:drawablePadding="8dp"
-        android:drawableRight="@drawable/ic_search_black_24dp"
-        android:drawableTint="@color/ic_color"
-        android:hint="@string/main_search"
-        android:inputType="text"
-        android:padding="8dp"
-        android:textColor="@color/black"
-        android:textSize="@dimen/textSize" />
-    <!--<fragment-->
-    <!--android:id="@+id/place_autocomplete_fragment"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"-->
-    <!--/>-->
+        android:background="@drawable/edit_text"
+        android:padding="6dp"
+        android:layout_marginBottom="5dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            app:srcCompat="@drawable/ic_distance" />
+
+        <TextView
+            android:id="@+id/tvDistance"
+            android:layout_width="0dp"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:background="@color/ic_color" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center_vertical"
+            app:srcCompat="@drawable/ic_access_time" />
+
+        <TextView
+            android:id="@+id/tvDuration"
+            android:layout_width="0dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="5dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5" />
+
+    </LinearLayout>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -46,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/black"
-        android:text="تم"
+        android:text="اطلب"
         android:textColor="@color/white"
         android:textSize="@dimen/titel" />
 
@@ -54,21 +81,22 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/edPlace"
         android:layout_alignParentRight="true"
+        android:layout_below="@id/llayout"
         android:layout_margin="5dp"
-        app:backgroundTint="@color/white"
-        app:fabSize="mini"
-        app:elevation="5dp"
         android:background="@color/white"
+        app:backgroundTint="@color/white"
+        app:elevation="5dp"
+        app:fabSize="mini"
         app:rippleColor="@color/white"
         app:srcCompat="@drawable/ic_my_location_black_24dp" />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/fab"
         android:layout_alignParentRight="true"
+        android:layout_below="@id/fab"
         android:layout_margin="5dp"
         android:background="@color/white"
         android:visibility="visible"

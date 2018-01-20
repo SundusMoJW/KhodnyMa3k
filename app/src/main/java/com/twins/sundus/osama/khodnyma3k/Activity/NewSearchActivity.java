@@ -64,7 +64,8 @@ public class NewSearchActivity extends AppCompatActivity implements GoogleMap.On
     private GoogleApiClient mGoogleApiClient;
     private Marker mCurrLocationMarker;
     private Button done;
-    String keyLocation;
+    private String keyLocation;
+    private FloatingActionButton fab_type;
     private FloatingActionButton fab;
 
     @Override
@@ -107,9 +108,15 @@ public class NewSearchActivity extends AppCompatActivity implements GoogleMap.On
                         finish();
                     } else {
                         if (keyLocation.equals(GO_LOCATION)) {
-                            Intent intent = new Intent();
-                            intent.putExtra(AppConstant.RETURN_VALUE, edPlace.getText());
-                            setResult(AppConstant.MAP_ACTIVITY_GO_RESULT, intent);
+//                            Intent intent = new Intent();
+//                            intent.putExtra(AppConstant.RETURN_VALUE, edPlace.getText());
+//                            setResult(AppConstant.MAP_ACTIVITY_GO_RESULT, intent);
+//                            finish();
+                            Intent intent = new Intent(NewSearchActivity.this, DirectionActivity.class);
+//                            intent.putExtra(AppConstant.RETURN_VALUE, edPlace.getText());
+//                            setResult(AppConstant.MAP_ACTIVITY_GO_RESULT, intent);t
+                            intent.putExtra("","");
+                            startActivity(intent);
                             finish();
                         }
                     }
@@ -117,15 +124,24 @@ public class NewSearchActivity extends AppCompatActivity implements GoogleMap.On
             }
         });
 
-        fab=findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mMap.getMyLocation() != null) {
+                if (mMap.getMyLocation() != null) {
                     // Check to ensure coordinates aren't null, probably a better way of doing this...
                     LatLng latLng = new LatLng(mMap.getMyLocation().getLatitude(), mMap.getMyLocation().getLongitude());
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,18));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
                 }
+            }
+        });
+        fab_type = findViewById(R.id.fab_type);
+        fab_type.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mMap != null && mMap.getMapType() == GoogleMap.MAP_TYPE_SATELLITE) {
+                    mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                } else mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
             }
         });
 //        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
@@ -185,7 +201,9 @@ public class NewSearchActivity extends AppCompatActivity implements GoogleMap.On
 //        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.car));
 //        mCurrLocationMarker = mMap.addMarker(markerOptions);
         //move map camera
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
+
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
+
     }
 
     @Override
@@ -197,10 +215,12 @@ public class NewSearchActivity extends AppCompatActivity implements GoogleMap.On
     public boolean onMyLocationButtonClick() {
         return false;
     }
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
+
     @Override
     public void onMyLocationClick(@NonNull Location location) {
 
@@ -339,7 +359,7 @@ public class NewSearchActivity extends AppCompatActivity implements GoogleMap.On
 //                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.car));
 //                mCurrLocationMarker = mMap.addMarker(markerOptions);
                 //move map camera
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), 18));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), 18));
                 Log.i(TAG, "Place: " + place.getName());
             } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
                 Status status = PlaceAutocomplete.getStatus(this, data);

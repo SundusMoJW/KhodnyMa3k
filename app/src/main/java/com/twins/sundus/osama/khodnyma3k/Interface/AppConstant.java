@@ -24,5 +24,7 @@ public interface AppConstant {
     String KEY="key";
     String TAG ="//**";
     String RETURN_VALUE = "returnValue";
-
+    String DIRECTION_URL_API = "https://maps.googleapis.com/maps/api/directions/json?";
+    String GOOGLE_API_KEY="AIzaSyBT2Kk5oh2O18Lw1dv9ZNtrCIxFlt1QQBM";
+    String GETPLACESHIT = "places_hit";
 }

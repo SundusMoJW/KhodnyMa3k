@@ -79,7 +79,7 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMyLocationButt
                 if (mMap.getMyLocation() != null) {
                     // Check to ensure coordinates aren't null, probably a better way of doing this...
                     LatLng latLng = new LatLng(mMap.getMyLocation().getLatitude(), mMap.getMyLocation().getLongitude());
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
                 }
             }
         });
@@ -254,8 +254,10 @@ public class HomeFragment extends Fragment implements GoogleMap.OnMyLocationButt
 ////      BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)
 //        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.car));
 //        mCurrLocationMarker = mMap.addMarker(markerOptions);
+
+//Utils.animateMarkerNew(mMap,latLng, final LatLng destination, final Marker marker) ;
         //move map camera
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
     }
 
     private void checkLocationPermission() {
